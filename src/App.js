@@ -15,12 +15,13 @@ import {
   Typography,
 } from "@mui/material";
 
-import Header from './components/Header';
-import Article from './components/Article';
-import Sidebar from './components/Sidebar';
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 import RightSideBar from "./components/RightSideBar";
+import ArticlesPage from "./components/ArticlesPage";
 
 import "./App.css";
+import CodeSnippetsPage from "./components/CodesSnippetsPage";
 
 function App() {
   return (
@@ -29,14 +30,13 @@ function App() {
       <div className="App">
         <Grid container>
           <Grid item xs="2">
-              <Sidebar />
+            <Sidebar />
           </Grid>
           <Grid item xs="7">
             <Header />
             <main>
-              <List>
-                {[...Array(8)].map(() => <Article />)}
-              </List>
+              {/* <ArticlesPage /> */}
+              <CodeSnippetsPage />
             </main>
           </Grid>
           <Grid item xs="3">

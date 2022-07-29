@@ -16,6 +16,8 @@ import ArticleIcon from '@mui/icons-material/Article';
 import CodeIcon from '@mui/icons-material/Code';
 import GifIcon from '@mui/icons-material/Gif';
 import RedditIcon from '@mui/icons-material/Reddit';
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 const drawerWidth = 240;
 
@@ -66,6 +68,22 @@ const Sidebar = () => {
                     <RedditIcon />
                   </ListItemIcon>
                   <ListItemText primary='Reddit' />
+                </ListItemButton>
+              </ListItem>
+              <ListItem key='Videos' disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <YouTubeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Videos' />
+                </ListItemButton>
+              </ListItem>
+              <ListItem key='Project Ideas' disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <LightbulbIcon />
+                  </ListItemIcon>
+                  <ListItemText primary='Project Ideas' />
                 </ListItemButton>
               </ListItem>
             </List>
