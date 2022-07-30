@@ -22,6 +22,7 @@ import ArticlesPage from "./components/ArticlesPage";
 
 import "./App.css";
 import CodeSnippetsPage from "./components/CodesSnippetsPage";
+import GifsPage from "./components/GifsPage";
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
             <Header />
             <main>
               {/* <ArticlesPage /> */}
-              <CodeSnippetsPage />
+              <GifsPage />
             </main>
           </Grid>
           <Grid item xs="3">

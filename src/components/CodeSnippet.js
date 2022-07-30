@@ -7,6 +7,12 @@ import CodeBlock from '@tenon-io/tenon-codeblock';
 
 
 const CodeSnippet = () => {
+  const helloString = `const HelloWorld = () => {
+  console.log('Hello World!')
+  
+  return true;
+}`
+
   return (
     <CardActionArea sx={{ marginBottom: 2}}>
       <Card variant="outlined" sx={{ display: "flex" }}>
@@ -15,7 +21,7 @@ const CodeSnippet = () => {
             An Article Title
           </Typography>
           <CodeBlock 
-            codeString="This is some code."
+            codeString={helloString}
           />
         </CardContent>
       </Card>
