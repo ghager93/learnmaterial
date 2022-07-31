@@ -9,11 +9,8 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
-  Typography,
 } from "@mui/material";
 
-import InboxIcon from "@mui/icons-material/Inbox";
-import MailIcon from "@mui/icons-material/Mail";
 import ArticleIcon from '@mui/icons-material/Article';
 import CodeIcon from '@mui/icons-material/Code';
 import GifIcon from '@mui/icons-material/Gif';
@@ -23,75 +20,68 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 
 const drawerWidth = 240;
 
+const sideBarItems = [
+  {
+    to: '/Articles',
+    text: 'Articles',
+    icon: <ArticleIcon />
+  },
+  {
+    to: '/CodeSnippets',
+    text: 'Code Snippets',
+    icon: <CodeIcon />
+  },
+  {
+    to: '/Gifs',
+    text: 'GIFs',
+    icon: <GifIcon />
+  },
+  {
+    to: '/Reddit',
+    text: 'Reddit',
+    icon: <RedditIcon />
+  },
+  {
+    to: '/Videos',
+    text: 'Videos',
+    icon: <YouTubeIcon />
+  },
+  {
+    to: '/ProjectIdeas',
+    text: 'Project Ideas',
+    icon: <LightbulbIcon />
+  }
+]
+
 const Sidebar = () => {
   return (
     <Drawer
-            sx={{
-              width: drawerWidth,
-              flexShrink: 0,
-              '& .MuiDrawer-paper': {
-                width: drawerWidth,
-                boxSizing: 'border-box',
-              },
-            }}
-            variant="permanent"
-            anchor="left"
-          >
-            <Toolbar />
-            <Divider />
-            <List>
-              <Link to='/Articles' style={{ textDecoration: 'none' }}>
-                <ListItem key='Articles' disablePadding>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <ArticleIcon />
-                    </ListItemIcon>
-                    <ListItemText primary='Articles' />
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-              <ListItem key='Code Snippets' disablePadding>
-                <ListItemButton to='/CodeSnippets'>
-                  <ListItemIcon>
-                    <CodeIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Code Snippets' />
-                </ListItemButton>
-              </ListItem>  
-              <ListItem key='GIFs' disablePadding>
-                <ListItemButton to='/Gifs'>
-                  <ListItemIcon>
-                    <GifIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='GIFs' />
-                </ListItemButton>
-              </ListItem>
-              <ListItem key='Reddit' disablePadding>
-                <ListItemButton to='/Reddit'>
-                  <ListItemIcon>
-                    <RedditIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Reddit' />
-                </ListItemButton>
-              </ListItem>
-              <ListItem key='Videos' disablePadding>
-                <ListItemButton to='/Videos'>
-                  <ListItemIcon>
-                    <YouTubeIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Videos' />
-                </ListItemButton>
-              </ListItem>
-              <ListItem key='Project Ideas' disablePadding>
-                <ListItemButton to='/ProjectIdeas'>
-                  <ListItemIcon>
-                    <LightbulbIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Project Ideas' />
-                </ListItemButton>
-              </ListItem>
-            </List>
-            <Divider />
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        '& .MuiDrawer-paper': {
+          width: drawerWidth,
+          boxSizing: 'border-box',
+        },
+      }}
+      variant="permanent"
+      anchor="left"
+    >
+      <Toolbar />
+      <Divider />
+      <List>
+        {sideBarItems.map(({ to, text, icon }) => (
+          <ListItem button key={text} disablePadding to={to} component={Link}>
+            <ListItemButton>
+              <ListItemIcon>
+                {icon}
+              </ListItemIcon>
+              <ListItemText primary={text} />
+            </ListItemButton>
+          </ListItem>          
+        ))}
+      </List>
+      <Divider />
     </Drawer>
   );
 }
