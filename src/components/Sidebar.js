@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import {
   Divider,
   Drawer,
@@ -38,14 +40,16 @@ const Sidebar = () => {
             <Toolbar />
             <Divider />
             <List>
-              <ListItem key='Articles' disablePadding>
-                <ListItemButton to='/Articles'>
-                  <ListItemIcon>
-                    <ArticleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary='Articles' />
-                </ListItemButton>
-              </ListItem>
+              <Link to='/Articles' style={{ textDecoration: 'none' }}>
+                <ListItem key='Articles' disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <ArticleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary='Articles' />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
               <ListItem key='Code Snippets' disablePadding>
                 <ListItemButton to='/CodeSnippets'>
                   <ListItemIcon>
