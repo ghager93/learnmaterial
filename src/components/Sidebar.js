@@ -39,7 +39,7 @@ const Sidebar = () => {
             <Divider />
             <List>
               <ListItem key='Articles' disablePadding>
-                <ListItemButton>
+                <ListItemButton to='/Articles'>
                   <ListItemIcon>
                     <ArticleIcon />
                   </ListItemIcon>
@@ -47,7 +47,7 @@ const Sidebar = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem key='Code Snippets' disablePadding>
-                <ListItemButton>
+                <ListItemButton to='/CodeSnippets'>
                   <ListItemIcon>
                     <CodeIcon />
                   </ListItemIcon>
@@ -55,7 +55,7 @@ const Sidebar = () => {
                 </ListItemButton>
               </ListItem>  
               <ListItem key='GIFs' disablePadding>
-                <ListItemButton>
+                <ListItemButton to='/Gifs'>
                   <ListItemIcon>
                     <GifIcon />
                   </ListItemIcon>
@@ -63,7 +63,7 @@ const Sidebar = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem key='Reddit' disablePadding>
-                <ListItemButton>
+                <ListItemButton to='/Reddit'>
                   <ListItemIcon>
                     <RedditIcon />
                   </ListItemIcon>
@@ -71,7 +71,7 @@ const Sidebar = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem key='Videos' disablePadding>
-                <ListItemButton>
+                <ListItemButton to='/Videos'>
                   <ListItemIcon>
                     <YouTubeIcon />
                   </ListItemIcon>
@@ -79,7 +79,7 @@ const Sidebar = () => {
                 </ListItemButton>
               </ListItem>
               <ListItem key='Project Ideas' disablePadding>
-                <ListItemButton>
+                <ListItemButton to='/ProjectIdeas'>
                   <ListItemIcon>
                     <LightbulbIcon />
                   </ListItemIcon>

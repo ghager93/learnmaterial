@@ -7,21 +7,22 @@ import CardMedia from '@mui/material/CardMedia'
 import logo from '../logo.svg';
 import testGif from '../tooncasm-test-copy.gif'
 
-const Article = () => {
+const Gif = () => {
   return (
-    <CardActionArea sx={{ marginBottom: 2}}>
-      <Card variant="outlined" sx={{ }}>
+    <CardActionArea >
+      <Card variant="outlined" align="center" sx={{ padding: 0, display: "flex", flexDirection: "column" }}>
         <CardMedia 
           component="img"
           image={testGif}
           alt="gif"
           sx={{ 
+            flex: "5",
             minHeight: "100px",
-            maxHeight: "150px",
-            width: "100px"
+            maxHeight: "450px",
+            minWidth: "100px"
           }}
         />
-        <CardContent sx={{ }}>
+        <CardContent sx={{ flex: "1", padding: 1 }}>
           <Typography variant="body1" align='left'>
             #GIF #Tag #Here
           </Typography>
@@ -31,4 +32,4 @@ const Article = () => {
   )
 }
 
-export default Article;
+export default Gif;

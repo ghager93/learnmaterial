@@ -1,5 +1,7 @@
 import SearchBar from "material-ui-search-bar";
-import { Button, Container } from "@mui/material";
+import { Button, Container, IconButton } from "@mui/material";
+
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const RightSideBar = () => {
     return (
@@ -7,6 +9,9 @@ const RightSideBar = () => {
           <SearchBar />   
           <Button color="inherit">Sign Up</Button>
           <Button color="inherit">Sign In</Button>
+          <IconButton color="inherit">
+            <SettingsIcon />
+          </IconButton>
         </Container>
     )
 }

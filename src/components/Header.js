@@ -9,26 +9,16 @@ import { Container } from "@mui/system";
 
 const Header = () => {
   return (
-    <AppBar position="sticky" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1}}>
+    <AppBar position="sticky" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, color: "inherit"}}>
       <Toolbar>
         <Typography
           component="h1"
           variant="h4"
           align="center"
-          sx={{ flex: "2" }}
+          sx={{ flex: "2", color: "white" }}
         >
           Made With Material.
         </Typography>
-        <Container
-          align="right"
-          sx={{ flex: "1" }}
-        >
-          <IconButton color="inherit">
-            <SettingsIcon />
-          </IconButton>
-          <Button color="inherit">Sign Up</Button>
-          <Button color="inherit">Sign In</Button>
-        </Container>
       </Toolbar>
     </AppBar>
   );

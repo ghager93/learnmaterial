@@ -4,9 +4,9 @@ import Gif from "./Gif";
 
 const GifsPage = () => {
   return (
-    <Grid container>
+    <Grid container spacing={2}>
       {[...Array(8)].map(() => (
-        <Grid item xs={3} >
+        <Grid item xs={3}>
           <Gif />
         </Grid>
       ))}
