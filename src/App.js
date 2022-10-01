@@ -61,7 +61,7 @@ function App() {
           </Grid>
         </Grid>
       </div>
-    </Router >
+    </Router>
   );
 }
 

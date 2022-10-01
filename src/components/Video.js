@@ -38,7 +38,7 @@ const Video = ({ id }) => {
         <CardMedia
           component="img"
           image={"https://img.youtube.com/vi/" + id + "/mqdefault.jpg"}
-          alt="gif"
+          alt={ id }
           sx={{
             flex: "5",
             minHeight: "100px",
@@ -51,7 +51,7 @@ const Video = ({ id }) => {
             {title}
           </Typography>
           <Typography variant="body1" align="left">
-            #GIF #Tag #Here
+            #Video #Tag #Here
           </Typography>
         </CardContent>
       </Card>

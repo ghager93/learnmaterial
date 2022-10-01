@@ -16,3 +16,8 @@ https://www.googleapis.com/youtube/v3/videos?id=D7eFpRf4tac&key=AIzaSyAIfz7XZvmZ
 
 - Allow certain parts of your page to be public/open to friends
 - Allow cloning/forking of different pages/directories/tags
+
+## Collections
+
+- Sets: ignore duplicate items (e.g. Movies to watch)
+- Random selection option (e.g. pick random 3 from a list)

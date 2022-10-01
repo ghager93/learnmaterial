@@ -1,14 +1,11 @@
 import { List } from "@mui/material";
 
 import Article from "./Article";
+import Test from "../utils/test";
 
 const ArticlesPage = () => {
   return (
-    <List>
-      {[...Array(8)].map(() => (
-        <Article />
-      ))}
-    </List>
+    <Test />
   );
 };
 
