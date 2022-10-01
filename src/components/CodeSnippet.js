@@ -18,7 +18,7 @@ const CodeSnippet = () => {
       <Card variant="outlined" sx={{ display: "flex" }}>
         <CardContent sx={{ flex: "1" }}>
           <Typography variant="h5" align='left'>
-            An Article Title
+            A Code Snippet Title
           </Typography>
           <CodeBlock 
             codeString={helloString}
