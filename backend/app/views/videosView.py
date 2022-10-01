@@ -1,7 +1,11 @@
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 
+<<<<<<< HEAD
 from youtubeApi import youtubeApi
+=======
+import youtubeApi
+>>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
 
 from app.models.videosModel import VideosModel
 from app.forms.videosForm import VideosValidation
@@ -128,13 +132,21 @@ def create():
             jsonify(
                 {
                     "error": {
+<<<<<<< HEAD
                         "code": 400,
+=======
+                        "code": 403,
+>>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
                         "message": f"Payload validation error: {validation_result[1]}",
                         "payload": str(request.data)
                     }
                 }
             ),
+<<<<<<< HEAD
             400
+=======
+            403
+>>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
         )
 
 
