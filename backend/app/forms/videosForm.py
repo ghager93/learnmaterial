@@ -21,32 +21,20 @@ class VideosValidation():
     '''
     model = {
         "type": "object",
-<<<<<<< HEAD
         "description": "Model to validate videos route",
-=======
-        "description": "Model to validate tasks route",
->>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
         "properties": {
             'name': {'type': 'string'},
             'title': {'type': 'string'},
             'author': {'type': 'string'},
             'description': {'type': 'string'},
-<<<<<<< HEAD
             'url': {'type': 'string'},
             'youtube_id': {'type': 'string'},
-=======
-            'link': {'type': 'string'},
->>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
             'timestamp': {
                 'type': 'string',
                 'format': 'date-time'
             },
-<<<<<<< HEAD
             'length': {'type': 'integer'},
             'tags': {'type': 'string'}        
-=======
-            'length': {'type': 'integer'}        
->>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
         }
     }
     @classmethod
