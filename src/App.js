@@ -15,6 +15,7 @@ import ArticlesPage from "./components/ArticlesPage";
 import CodeSnippetsPage from "./components/CodesSnippetsPage";
 import GifsPage from "./components/GifsPage";
 import VideosPage from "./components/VideosPage";
+import NewUser from "./components/NewUser";
 
 
 const routes = [
@@ -33,6 +34,10 @@ const routes = [
   {
     path: '/Videos',
     component: VideosPage
+  },
+  {
+    path: '/NewUser',
+    component: NewUser
   }
 ]
 

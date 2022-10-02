@@ -9,11 +9,7 @@ mod = Blueprint("testView", __name__)
 
 @mod.route('/')
 def baseRoute():
-<<<<<<< HEAD
     return {"data": "This is the base route."}
-=======
-    return "This is the base route."
->>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
 
 @mod.route('/test', methods=['GET'])
 def get_all_test():
