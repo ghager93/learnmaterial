@@ -47,11 +47,5 @@
       "last 1 safari version"
     ]
   },
-<<<<<<< HEAD
   "proxy": "http://localhost:5000"
-=======
-  {
-    "proxy": "http://localhost:5000"
-  }
->>>>>>> 665bdec34af27d620c77e8d5df317e8bd38b5ad5
 }
