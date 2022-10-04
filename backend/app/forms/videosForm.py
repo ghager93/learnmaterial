@@ -34,7 +34,8 @@ class VideosValidation():
                 'format': 'date-time'
             },
             'length': {'type': 'integer'},
-            'tags': {'type': 'string'}        
+            'tags': {'type': 'string'},
+            'username': {'type': 'string'}        
         }
     }
     @classmethod

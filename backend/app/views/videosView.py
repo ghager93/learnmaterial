@@ -15,7 +15,10 @@ mod = Blueprint("videosView", __name__)
 
 
 def _build_row(payload):
-    youtube_data = youtubeApi.get_video_data(payload['youtube_id'])
+    youtube_data = youtubeApi.get_video_data(payload['youtube_id'])[0]
+    print(youtube_data)
+    if "name" not in payload or not payload["name"]:
+        payload["name"] = youtube_data.title 
 
     return VideosModel(
         name=payload['name'],
@@ -24,10 +27,10 @@ def _build_row(payload):
         description=youtube_data.description,
         url=payload['url'],
         youtube_id=payload['youtube_id'],
-        timestamp=payload['timestamp'],
-        tags=youtube_data.tags,
+        # timestamp=payload['timestamp'],
+        tags="#".join(youtube_data.tags),
         length=youtube_data.duration,
-        user=payload['user']
+        user=payload['username']
     )
 
 
@@ -96,7 +99,7 @@ def create():
         js = request.get_json()
         row = _build_row(js)
         try:
-            current_app.logger.debug(f"Attempting to add row to db: {row}")
+            current_app.logger.debug(f"Attempting to add row to db: {row.to_dict()}")
             db.session.add(row)
             db.session.commit()
         except exc.SQLAlchemyError as e:

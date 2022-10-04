@@ -59,4 +59,36 @@ const Video = ({ id }) => {
   );
 };
 
+const VideoNoAPI = ({ data }) => {
+  return (
+    <CardActionArea>
+      <Card
+        variant="outlined"
+        align="center"
+        sx={{ padding: 0, display: "flex", flexDirection: "column" }}
+      >
+        <CardMedia
+          component="img"
+          image={ data.thumbnail }
+          alt={ data.youtube_id }
+          sx={{
+            flex: "5",
+            minHeight: "100px",
+            maxHeight: "450px",
+            minWidth: "100px",
+          }}
+        />
+        <CardContent sx={{ flex: "1", padding: 1 }}>
+          <Typography variant="h5" align="left">
+            { data.title }
+          </Typography>
+          <Typography variant="body1" align="left">
+            { data.tags }
+          </Typography>
+        </CardContent>
+      </Card>
+    </CardActionArea>
+  );
+};
+
 export default Video;

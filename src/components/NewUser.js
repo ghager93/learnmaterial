@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NewUser = (fields) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,13 +17,18 @@ const NewUser = (fields) => {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     'username': name,
-                    'email': 'test@email',
+                    'email': name + '@email',
                     'password': password
                 })
             }
             fetch('api/users', requestOptions)
                 .then(response => response.json())
-                .then(out => console.log(out))
+                .then(out => console.log(out));
+
+            navigate('/');
+        }
+        else {
+            alert("Passwords do not match!")
         }
     }
 

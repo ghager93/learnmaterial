@@ -7,7 +7,7 @@ class VideosModel(db.Model):
     name = db.Column(db.String(64), unique=True)
     title = db.Column(db.String(64))
     author = db.Column(db.String(64))
-    description = db.Column(db.String(200))
+    description = db.Column(db.Text)
     url = db.Column(db.String(64))
     youtube_id = db.Column(db.String(64))
     timestamp = db.Column(db.DateTime())
