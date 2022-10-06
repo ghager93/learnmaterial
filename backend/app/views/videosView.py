@@ -30,6 +30,7 @@ def _build_row(payload):
         # timestamp=payload['timestamp'],
         tags="#".join(youtube_data.tags),
         length=youtube_data.duration,
+        thumbnail_link=youtube_data.default_thumbnail_url,
         user=payload['username']
     )
 

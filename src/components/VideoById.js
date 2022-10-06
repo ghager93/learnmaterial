@@ -9,7 +9,25 @@ import CardActionArea from '@mui/material/CardActionArea';
 import CardMedia from '@mui/material/CardMedia'
 
 
-const Video = ({ data }) => {
+const axios = require('axios').default;
+
+const VideoById = ({ id }) => {
+  // const id = "D7eFpRf4tac";
+  const apikey = "AIzaSyAIfz7XZvmZSmrVqn1X0gb5B2Dhe8hCXoM";
+  const apiurl = "https://www.googleapis.com/youtube/v3/videos?id=" + id + "&key=" + apikey + "&part=snippet,contentDetails,statistics,status" ;
+
+  const [title, setTitle] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(apiurl);
+      setTitle(response.data.items[0].snippet.title);
+      console.log(response);
+    }
+
+    fetchData();
+  }, [apiurl]);
+
   return (
     <CardActionArea>
       <Card
@@ -19,8 +37,8 @@ const Video = ({ data }) => {
       >
         <CardMedia
           component="img"
-          image={ data.thumbnail_link }
-          alt={ data.youtube_id }
+          image={"https://img.youtube.com/vi/" + id + "/mqdefault.jpg"}
+          alt={ id }
           sx={{
             flex: "5",
             minHeight: "100px",
@@ -30,10 +48,10 @@ const Video = ({ data }) => {
         />
         <CardContent sx={{ flex: "1", padding: 1 }}>
           <Typography variant="h5" align="left">
-            { data.title }
+            {title}
           </Typography>
           <Typography variant="body1" align="left">
-            { data.tags }
+            #Video #Tag #Here
           </Typography>
         </CardContent>
       </Card>
@@ -41,4 +59,4 @@ const Video = ({ data }) => {
   );
 };
 
-export default Video;
+export default VideoById;

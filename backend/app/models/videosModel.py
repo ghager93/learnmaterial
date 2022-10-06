@@ -23,9 +23,10 @@ class VideosModel(db.Model):
             'author': self.author,
             'description': self.description,
             'url': self.url,
+            'youtube_id': self.youtube_id,
             'timestamp': self.timestamp,
             'tags': self.tags,
             'length': self.length,
             'thumbnail_link': self.thumbnail_link,
-            'user': self.user
+            'user': self.user,
         }
