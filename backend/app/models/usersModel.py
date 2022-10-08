@@ -1,6 +1,6 @@
 from flask_login import UserMixin
 
-from app import db, login
+from app import db, login_manager
 
 class UsersModel(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -18,6 +18,6 @@ class UsersModel(db.Model, UserMixin):
         }
         
 
-@login.user_loader
+@login_manager.user_loader
 def load_user(id):
     return db.session.query(UsersModel).get(int(id))

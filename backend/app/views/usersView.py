@@ -1,7 +1,7 @@
-import email
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 from werkzeug.security import generate_password_hash
+from flask_login import login_required
 
 from app.models.usersModel import UsersModel
 from app.forms.usersForm import UsersValidation
@@ -24,6 +24,7 @@ def _build_row(payload):
 
 
 @mod.route("/", methods=["GET"])
+@login_required
 def get_all():
     '''
     Returns all resources.

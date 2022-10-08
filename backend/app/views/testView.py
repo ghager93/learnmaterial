@@ -27,11 +27,11 @@ def get_all_test():
     if rows:
         response["data"].append([row.to_dict() for row in rows])
         return jsonify(response), 200
-    else:
-        return (
-            jsonify({"error": {"code": 400, "message": "No entries."}}),
-            400
-        )
+        
+    return (
+        jsonify({"error": {"code": 400, "message": "No entries."}}),
+        400
+    )
 
 
 @mod.route('/test', methods=['POST'])
