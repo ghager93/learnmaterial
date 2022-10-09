@@ -17,7 +17,7 @@ import GifsPage from "./components/GifsPage";
 import VideosPage from "./components/VideosPage";
 import NewUser from "./components/NewUser";
 import NewVideo from "./components/NewVideo";
-
+import UserForm from "./components/UserForm";
 
 const routes = [
   {
@@ -38,7 +38,7 @@ const routes = [
   },
   {
     path: '/NewUser',
-    component: NewUser
+    component: UserForm
   },
   {
     path: '/NewVideo',
