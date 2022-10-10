@@ -15,7 +15,6 @@ import ArticlesPage from "./components/ArticlesPage";
 import CodeSnippetsPage from "./components/CodesSnippetsPage";
 import GifsPage from "./components/GifsPage";
 import VideosPage from "./components/VideosPage";
-import NewUser from "./components/NewUser";
 import NewVideo from "./components/NewVideo";
 import UserForm from "./components/UserForm";
 
