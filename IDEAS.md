@@ -21,3 +21,22 @@ https://www.googleapis.com/youtube/v3/videos?id=D7eFpRf4tac&key=AIzaSyAIfz7XZvmZ
 
 - Sets: ignore duplicate items (e.g. Movies to watch)
 - Random selection option (e.g. pick random 3 from a list)
+
+## Views -> APIs
+
+- View directory should be replaced with api path (eg api/v1/)
+
+## Models
+
+- Model objects should just be called their type (e.g. Users instead of UsersModel)
+- Pydantic
+
+## Data Access Object
+
+- Flask-Restful
+
+## Marshalling 
+
+- Marshmallow
+
+## Type Hints

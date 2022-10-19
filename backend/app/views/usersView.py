@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 from werkzeug.security import generate_password_hash
 from flask_login import login_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 from app.models.usersModel import UsersModel
 from app.forms.usersForm import UsersValidation
@@ -24,12 +25,15 @@ def _build_row(payload):
 
 
 @mod.route("/", methods=["GET"])
-@login_required
+# @login_required
+@jwt_required()
 def get_all():
     '''
     Returns all resources.
     '''
     response = data_items_template()
+
+    print(get_jwt_identity())
 
     current_app.logger.debug(f"Received GET request to {request.path}, about to query database")
 
