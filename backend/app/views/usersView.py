@@ -80,6 +80,7 @@ def get(id):
 
 
 @mod.route("/", methods=["POST"])
+@jwt_required()
 def create():
     """
     Create a resource in the database.
