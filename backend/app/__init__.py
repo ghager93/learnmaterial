@@ -41,10 +41,10 @@ app.register_blueprint(usersView.mod, url_prefix='/api/users')
 # app.register_blueprint(accountsView.mod, url_prefix='/api/accounts')
 app.register_blueprint(loginView.mod, url_prefix='/api/accounts')
 
-from app.models import usersModel, videosModel
+from app.models import user, video
 
-admin.add_view(ModelView(usersModel.UsersModel, db.session))
-admin.add_view(ModelView(videosModel.VideosModel, db.session))
+admin.add_view(ModelView(user.UsersModel, db.session))
+admin.add_view(ModelView(video.VideosModel, db.session))
 
 
 if __name__ != "__main__":

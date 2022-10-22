@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 from pprint import pprint
 
-from app.models.articlesModel import Article, ArticlesModel
+from app.models.article import Article
 from app.forms.articlesForm import ArticlesValidation
 from app import db
 
@@ -29,7 +29,7 @@ def get_all():
 
     try:
         rows = (
-            db.session.query(ArticlesModel)
+            db.session.query(Article)
             .filter_by(**args.filter_dict)
             .order_by(sort_arg)
             .paginate(page=args.page, per_page=args.per_page, error_out=False)
@@ -61,7 +61,7 @@ def get(id):
     )
     
     try:
-        row = db.session.query(ArticlesModel).filter_by(id=id).first()
+        row = db.session.query(Article).filter_by(id=id).first()
     except exc.InvalidRequestError as e:
         return (
             jsonify({"error": {"code": 400, "message": "Invalid query parameter"}}),
@@ -94,7 +94,7 @@ def create():
         js = request.get_json()
 
         # Try create a new row in DB
-        row = ArticlesModel(**js)
+        row = Article(**js)
         try:
             current_app.logger.debug(f"Attempting to add row to db: {row}")
             db.session.add(row)
@@ -142,7 +142,7 @@ def create():
 def marshallow_test():
     pprint(request.get_json())
     article = Article.Schema().load(request.get_json())
-
+    print(article)
     pprint(article)
 
     db.session.add(article)
@@ -161,7 +161,7 @@ def delete(id):
 
     current_app.logger.debug(f"Received  DELETE request to {request.path}, about to query database")
 
-    row = db.session.query(ArticlesModel).filter_by(id=id).first()
+    row = db.session.query(Article).filter_by(id=id).first()
     if row:
         try:
             current_app.logger.debug(f"Database response {row.to_dict()}")

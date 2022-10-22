@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 
-from app.models.projectIdeasModel import ProjectIdeasModel
+from app.models.project_idea import ProjectIdeasModel
 from app.forms.projectIdeasForm import ProjectIdeasValidation
 from app import db
 

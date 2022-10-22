@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 
-from app.models.codeSnippetsModel import CodeSnippetsModel
+from app.models.code_snippet import CodeSnippetsModel
 from app.forms.codeSnippetsForm import CodeSnippetsValidation
 from app import db
 

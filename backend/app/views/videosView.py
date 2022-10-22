@@ -3,7 +3,7 @@ from sqlalchemy import exc, asc, desc
 
 from youtubeApi import youtubeApi
 
-from app.models.videosModel import VideosModel
+from app.models.video import VideosModel
 from app.forms.videosForm import VideosValidation
 from app import db
 

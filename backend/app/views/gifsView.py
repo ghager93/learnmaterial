@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 
-from app.models.gifsModel import GifsModel
+from app.models.gif import GifsModel
 from app.forms.gifsForm import GifsValidation
 from app import db
 

@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 from flask_login import login_required
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-from app.models.usersModel import UsersModel
+from app.models.user import UsersModel
 from app.forms.usersForm import UsersValidation
 from app import db
 

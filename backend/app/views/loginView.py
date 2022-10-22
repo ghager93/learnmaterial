@@ -4,8 +4,8 @@ from flask import Blueprint, jsonify, request, current_app
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, set_access_cookies, get_jwt
 
 from app import db, jwt_manager
-from app.models.usersModel import UsersModel
-from app.models.tokenBlockList import TokenBlockList
+from app.models.user import UsersModel
+from app.models.token_block_list import TokenBlockList
 
 
 mod = Blueprint("loginView", __name__)

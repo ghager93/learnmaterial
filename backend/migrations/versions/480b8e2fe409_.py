@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 46a21e887f64
+Revision ID: 480b8e2fe409
 Revises: 
-Create Date: 2022-10-22 15:54:01.265857
+Create Date: 2022-10-22 18:01:54.356227
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '46a21e887f64'
+revision = '480b8e2fe409'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,18 +25,10 @@ def upgrade():
     sa.Column('author', sa.String(length=64), nullable=True),
     sa.Column('description', sa.String(length=200), nullable=True),
     sa.Column('body', sa.Text(), nullable=True),
-    sa.Column('link', sa.String(length=64), nullable=True),
-    sa.Column('timestamp', sa.DateTime(), nullable=True),
+    sa.Column('url', sa.String(length=64), nullable=True),
+    sa.Column('added_on', sa.DateTime(), nullable=True),
     sa.Column('tags', sa.String(length=200), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
-    )
-    op.create_table('articles2',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=64), nullable=True),
-    sa.Column('title', sa.String(length=64), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('codeSnippets',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -134,6 +126,5 @@ def downgrade():
     op.drop_table('projectIdeas')
     op.drop_table('gifs')
     op.drop_table('codeSnippets')
-    op.drop_table('articles2')
     op.drop_table('articles')
     # ### end Alembic commands ###
