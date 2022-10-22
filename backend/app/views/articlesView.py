@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
+from pprint import pprint
 
-from app.models.articlesModel import ArticlesModel
+from app.models.articlesModel import Article, ArticlesModel
 from app.forms.articlesForm import ArticlesValidation
 from app import db
 
@@ -135,6 +136,19 @@ def create():
             ),
             403
         )
+
+
+@mod.route("/marshmallowtest", methods=["POST"])
+def marshallow_test():
+    pprint(request.get_json())
+    article = Article.Schema().load(request.get_json())
+
+    pprint(article)
+
+    db.session.add(article)
+    db.session.commit()
+
+    return Article.Schema().dump(article), 200
 
 
 @mod.route("/<id>", methods=["DELETE"])

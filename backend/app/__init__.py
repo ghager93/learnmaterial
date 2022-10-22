@@ -8,6 +8,7 @@ from flask_admin.contrib.sqla import ModelView
 
 from config import Config
 
+
 app = Flask(__name__)
 app.config.from_object(Config)
 
