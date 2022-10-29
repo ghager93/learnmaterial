@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 from sqlalchemy import exc, asc, desc
 
-from app.models.project_idea import ProjectIdeasModel
+from app.models.project_idea import ProjectIdea
 from app.forms.projectIdeasForm import ProjectIdeasValidation
 from app import db
 
@@ -27,7 +27,7 @@ def get_all():
 
     try:
         rows = (
-            db.session.query(ProjectIdeasModel)
+            db.session.query(ProjectIdea)
             .filter_by(**args.filter_dict)
             .order_by(sort_arg)
             .paginate(page=args.page, per_page=args.per_page, error_out=False)
@@ -65,7 +65,7 @@ def get(id):
     )
     
     try:
-        row = db.session.query(ProjectIdeasModel).filter_by(id=id).first()
+        row = db.session.query(ProjectIdea).filter_by(id=id).first()
     except exc.InvalidRequestError as e:
         return (
             jsonify({"error": {"code": 400, "message": "Invalid query parameter"}}),
@@ -96,7 +96,7 @@ def create():
     current_app.logger.debug(f"Validation result: {validation_result}")
     if validation_result[0]:
         js = request.get_json()
-        row = ProjectIdeasModel(**js)
+        row = ProjectIdea(**js)
         try:
             current_app.logger.debug(f"Attempting to add row to db: {row}")
             db.session.add(row)
@@ -149,7 +149,7 @@ def delete(id):
 
     current_app.logger.debug(f"Received  DELETE request to {request.path}, about to query database")
 
-    row = db.session.query(ProjectIdeasModel).filter_by(id=id).first()
+    row = db.session.query(ProjectIdea).filter_by(id=id).first()
     if row:
         try:
             current_app.logger.debug(f"Database response {row.to_dict()}")

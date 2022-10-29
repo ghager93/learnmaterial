@@ -29,3 +29,7 @@ def extract_query_arguments(args):
     QueryArguments = namedtuple("QueryArguments", "per_page page sort_by sort_order filter_dict")
 
     return QueryArguments(per_page, page, sort_by, sort_order, filter_dict)
+
+
+def extract_video_id_from_youtube_url(url: str):
+    return url.replace("https://www.youtube.com/watch?v=", "")

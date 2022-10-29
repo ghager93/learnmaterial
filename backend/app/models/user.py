@@ -15,8 +15,8 @@ class User:
     __sa_dataclass_metadata_key__ = "sa"
 
     id: int = field(init=False, metadata={"sa": db.Column(db.Integer, primary_key=True)})
-    password_hash: str = field(init=None, metadata={"sa": db.Column(db.String(64))})
-    username: str = field(default=None, metadata={"sa": db.Column(db.String(128))})
+    password_hash: str = field(default=None, metadata={"sa": db.Column(db.String(128))})
+    username: str = field(default=None, metadata={"sa": db.Column(db.String(64))})
 
     Schema = Schema
 

@@ -4,7 +4,7 @@ from flask import Blueprint, jsonify, request, current_app
 from flask_jwt_extended import create_access_token, get_jwt_identity, jwt_required, set_access_cookies, get_jwt
 
 from app import db, jwt_manager
-from app.models.user import UsersModel
+from app.models.user import User
 from app.models.token_block_list import TokenBlockList
 
 
@@ -19,7 +19,7 @@ def is_token_blocked(jwt_header, jwt_payload):
 @mod.route("/login", methods=["POST"])
 def login():
     try:
-        user = db.session.query(UsersModel).filter_by(username=request.json.get("username", None)).first_or_404()
+        user = db.session.query(User).filter_by(username=request.json.get("username", None)).first_or_404()
 
         if user.verify_password(request.json.get("password", None)):
             access_token = create_access_token(identity=user)

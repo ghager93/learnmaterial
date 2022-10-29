@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash
 from flask_login import login_required
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-from app.models.user import UsersModel
+from app.models.user import User
 from app.forms.usersForm import UsersValidation
 from app import db
 
@@ -16,10 +16,9 @@ mod = Blueprint("usersView", __name__)
 
 
 def _build_row(payload):
-    # TODO move to UsersModel class
-    return UsersModel(
+    # TODO move to User class
+    return User(
         username=payload["username"],
-        email=payload["email"],
         password_hash=generate_password_hash(payload["password"])
     )
 
@@ -38,13 +37,13 @@ def get_all():
     current_app.logger.debug(f"Received GET request to {request.path}, about to query database")
 
     try:
-        # TODO refactor to DAO (inherit from UsersModel?)
-        rows = get_all_query(db, UsersModel, request.args)
+        # TODO refactor to DAO (inherit from User?)
+        rows = get_all_query(db, User, request.args)
     except exc.InvalidRequestError as e:
         return error(400, "Invalid query parameter")
     if rows:
-        current_app.logger.debug(f"Database response {[row.to_dict() for row in rows]}")
-        [response["data"]["items"].append(row.to_dict()) for row in rows]
+        current_app.logger.debug(f"Database response {rows}")
+        response["data"]["items"].extend(rows)
         return jsonify(response), 200
     else:
         current_app.logger.debug(f"No entries")
@@ -64,12 +63,12 @@ def get(id):
     current_app.logger.debug(f"Received GET request to {request.path}, about to query database")
 
     try:
-        row = get_query(db, UsersModel, id)
+        row = get_query(db, User, id)
     except exc.InvalidRequestError as e:
         return error(400, "Invalid query parameter")
     if row:
         current_app.logger.debug(f"Database response {row}")
-        response["data"]["items"].append(row.to_dict())
+        response["data"]["items"].append(row)
         return jsonify(response), 200
     else:
         current_app.logger.debug(f"No entries for ID: {id}")
@@ -80,7 +79,6 @@ def get(id):
 
 
 @mod.route("/", methods=["POST"])
-@jwt_required()
 def create():
     """
     Create a resource in the database.
@@ -117,7 +115,7 @@ def create():
             )
         else:
             # Row was added lets send the response payload with the row we added
-            response["data"]["items"].append(row.to_dict())
+            response["data"]["items"].append(row)
             return jsonify(response), 201
     else:
         current_app.logger.debug("Payload validation error")
@@ -146,10 +144,10 @@ def delete(id):
 
     current_app.logger.debug(f"Received  DELETE request to {request.path}, about to query database")
 
-    row = db.session.query(UsersModel).filter_by(id=id).first()
+    row = db.session.query(User).filter_by(id=id).first()
     if row:
         try:
-            current_app.logger.debug(f"Database response {row.to_dict()}")
+            current_app.logger.debug(f"Database response {row}")
             current_app.logger.debug(f"About to attempt to delete row")
             db.session.delete(row)
             db.session.commit()
@@ -171,7 +169,7 @@ def delete(id):
                 400,
             )
         else:
-            resp_data = row.to_dict()
+            resp_data = row
 
             # we want to add deleted: true to the object we return.
             resp_data["deleted"] = "true"  

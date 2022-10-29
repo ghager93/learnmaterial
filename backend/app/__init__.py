@@ -22,29 +22,25 @@ admin = Admin(app, name="learn-material", template_mode="bootstrap3")
 
 from app.views import (
     loginView,
-    testView, 
     articlesView, 
     codeSnippetsView,
     gifsView,
     projectIdeasView,
     usersView,
     videosView,
-    accountsView
 )
-app.register_blueprint(testView.mod, url_prefix='/test')
 app.register_blueprint(articlesView.mod, url_prefix='/api/articles')
 app.register_blueprint(codeSnippetsView.mod, url_prefix='/api/codesnippets')
 app.register_blueprint(gifsView.mod, url_prefix='/api/gifs')
 app.register_blueprint(projectIdeasView.mod, url_prefix='/api/projectIdeas')
 app.register_blueprint(videosView.mod, url_prefix='/api/videos')
 app.register_blueprint(usersView.mod, url_prefix='/api/users')
-# app.register_blueprint(accountsView.mod, url_prefix='/api/accounts')
 app.register_blueprint(loginView.mod, url_prefix='/api/accounts')
 
 from app.models import user, video
 
-admin.add_view(ModelView(user.UsersModel, db.session))
-admin.add_view(ModelView(video.VideosModel, db.session))
+admin.add_view(ModelView(user.User, db.session))
+admin.add_view(ModelView(video.Video, db.session))
 
 
 if __name__ != "__main__":

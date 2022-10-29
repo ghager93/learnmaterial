@@ -5,7 +5,6 @@ import { TextField, Button, Grid } from "@mui/material";
 
 const UserValidation = object().shape({
   username: string().required("Required."),
-  email: string().email("Valid email required."),
   password: string().required("Required."),
   confirmPassword: string().oneOf([ref('password')], "Passwords do not match.")
 });
@@ -14,7 +13,6 @@ const UserForm = () => {
   const formik = useFormik({
     initialValues: {
       username: '',
-      email: '',
       password: '',
       confirmPassword: ''
     },
@@ -32,7 +30,6 @@ const UserForm = () => {
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         'username': values.username,
-        'email': values.email,
         'password': values.password
       })
     }
@@ -58,18 +55,6 @@ const UserForm = () => {
               helperText={formik.touched.email && formik.errors.username}
             />
           </Grid>
-          <Grid item padding={1}>
-            <TextField
-              fullWidth
-              id="email"
-              name="email"
-              label="Email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />    
-          </Grid> 
           <Grid item padding={1}>
             <TextField
               fullWidth

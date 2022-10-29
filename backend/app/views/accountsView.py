@@ -5,7 +5,7 @@ from flask_login import current_user, login_user, logout_user, login_manager
 from sqlalchemy import exc, asc, desc
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from app.models.user import UsersModel
+from app.models.user import User
 from app.forms.usersForm import UsersValidation
 from app import db
 
@@ -24,7 +24,7 @@ def login():
 
     validation_result = UsersValidation.validate(payload)
     if validation_result[0]:
-        user = db.session.query(UsersModel).filter_by(username=payload["username"]).first()
+        user = db.session.query(User).filter_by(username=payload["username"]).first()
         if user is None or not check_password_hash(user.password_hash, payload["password"]):
             return "Invalid username or password"
         login_user(user)

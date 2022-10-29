@@ -3,35 +3,39 @@ from sqlalchemy import exc, asc, desc
 
 from youtubeApi import youtubeApi
 
-from app.models.video import VideosModel
+from app.models.video import Video
 from app.forms.videosForm import VideosValidation
 from app import db
 
 from app.utils.queries import get_all_query, get_query
 from app.utils.responses import data_items_template, error
+from app.utils.utils import extract_video_id_from_youtube_url
 
 
 mod = Blueprint("videosView", __name__)
 
 
-def _build_row(payload):
+def _build_row(payload: dict) -> Video:
+    if "youtube_id" not in payload:
+        payload["youtube_id"] = extract_video_id_from_youtube_url(payload["url"])
+
     youtube_data = youtubeApi.get_video_data(payload['youtube_id'])[0]
     print(youtube_data)
+
     if "name" not in payload or not payload["name"]:
         payload["name"] = youtube_data.title 
 
-    return VideosModel(
+    return Video(
         name=payload['name'],
         title=youtube_data.title,
         author=youtube_data.channel_title,
         description=youtube_data.description,
         url=payload['url'],
         youtube_id=payload['youtube_id'],
-        # timestamp=payload['timestamp'],
         tags="#".join(youtube_data.tags),
         length=youtube_data.duration,
         thumbnail_link=youtube_data.default_thumbnail_url,
-        user=payload['username']
+        user=1
     )
 
 
@@ -45,7 +49,7 @@ def get_all():
     current_app.logger.debug(f"Received GET request to {request.path}, about to query database")
 
     try:
-        rows = get_all_query(db, VideosModel, request.args)
+        rows = get_all_query(db, Video, request.args)
     except exc.InvalidRequestError as e:
         return error(400, "Invalid query parameter")
     if rows:
@@ -70,7 +74,7 @@ def get(id):
     current_app.logger.debug(f"Received GET request to {request.path}, about to query database")
 
     try:
-        row = get_query(db, VideosModel, id)
+        row = get_query(db, Video, id)
     except exc.InvalidRequestError as e:
         return error(400, "Invalid query parameter")
     if row:
@@ -100,7 +104,7 @@ def create():
         js = request.get_json()
         row = _build_row(js)
         try:
-            current_app.logger.debug(f"Attempting to add row to db: {row.to_dict()}")
+            current_app.logger.debug(f"Attempting to add row to db: {row}")
             db.session.add(row)
             db.session.commit()
         except exc.SQLAlchemyError as e:
@@ -122,7 +126,7 @@ def create():
             )
         else:
             # Row was added lets send the response payload with the row we added
-            response["data"]["items"].append(row.to_dict())
+            response["data"]["items"].append(row.json())
             return jsonify(response), 201
     else:
         current_app.logger.debug("Payload validation error")
@@ -151,7 +155,7 @@ def delete(id):
 
     current_app.logger.debug(f"Received  DELETE request to {request.path}, about to query database")
 
-    row = db.session.query(VideosModel).filter_by(id=id).first()
+    row = db.session.query(Video).filter_by(id=id).first()
     if row:
         try:
             current_app.logger.debug(f"Database response {row.to_dict()}")
