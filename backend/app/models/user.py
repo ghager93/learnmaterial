@@ -1,7 +1,6 @@
 from dataclasses import field
 from datetime import datetime
 
-from flask_login import UserMixin
 from werkzeug.security import check_password_hash
 from marshmallow import Schema
 from marshmallow_dataclass import dataclass
@@ -16,7 +15,7 @@ class User:
 
     id: int = field(init=False, metadata={"sa": db.Column(db.Integer, primary_key=True)})
     password_hash: str = field(default=None, metadata={"sa": db.Column(db.String(128))})
-    username: str = field(default=None, metadata={"sa": db.Column(db.String(64))})
+    username: str = field(default=None, metadata={"sa": db.Column(db.String(64), unique=True)})
 
     Schema = Schema
 

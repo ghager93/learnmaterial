@@ -17,6 +17,15 @@ import GifsPage from "./components/GifsPage";
 import VideosPage from "./components/VideosPage";
 import NewVideo from "./components/NewVideo";
 import UserForm from "./components/UserForm";
+import LoginForm from "./components/LoginForm";
+
+export const userContext = React.createContext("");
+
+const currentUser = () => {
+  return localStorage.getItem("user") || "No one";
+}
+
+const [user, setUser] = React.useState("");
 
 const routes = [
   {
@@ -42,6 +51,10 @@ const routes = [
   {
     path: '/NewVideo',
     component: NewVideo
+  },
+  {
+    path: '/signin',
+    component: LoginForm
   }
 ]
 
@@ -49,27 +62,29 @@ function App() {
   return (
     <Router>
       <CssBaseline />
-      <div className="App">
-        <Grid container>
-          <Grid item xs="2">
-            <Sidebar />
+      <userContext.Provider value={{user, setUser}} >
+        <div className="App">
+          <Grid container>
+            <Grid item xs="2">
+              <Sidebar />
+            </Grid>
+            <Grid item xs="7">
+              <Header />
+              <main>
+                <Routes>
+                  <Route path="/" element={<p>No page!</p>} />
+                  {routes.map(({path, component: C}) => (
+                    <Route key={path} path={path} element={<C />} />
+                  ))}
+                </Routes>
+              </main>
+            </Grid>
+            <Grid item xs="3">
+              <RightSideBar />
+            </Grid>
           </Grid>
-          <Grid item xs="7">
-            <Header />
-            <main>
-              <Routes>
-                <Route path="/" element={<p>No page!</p>} />
-                {routes.map(({path, component: C}) => (
-                  <Route key={path} path={path} element={<C />} />
-                ))}
-              </Routes>
-            </main>
-          </Grid>
-          <Grid item xs="3">
-            <RightSideBar />
-          </Grid>
-        </Grid>
-      </div>
+        </div>
+      </userContext.Provider>
     </Router>
   );
 }

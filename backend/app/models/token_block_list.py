@@ -6,7 +6,8 @@ from marshmallow_dataclass import dataclass
 
 from app import db
 
-
+@db.Model.registry.mapped
+@dataclass
 class TokenBlockList:
     __tablename__ = "token_block_list"
     __sa_dataclass_metadata_key__ = "sa"
